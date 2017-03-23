@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="abstract_reviews")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PaperAbstractRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AbstractReviewRepository")
  */
 class AbstractReview {
 
