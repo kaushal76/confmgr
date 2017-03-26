@@ -6,13 +6,13 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class FullPaper
+ * Class CameraReadyPaper
  * @package AppBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="full_paper")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\FullPaperRepository")
+ * @ORM\Table(name="camera_ready_paper")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CameraReadyPaperRepository")
  */
-class FullPaper {
+class CameraReadyPaper {
 
     /**
      * @ORM\Column(type="integer")
@@ -27,17 +27,11 @@ class FullPaper {
     protected $code;
 
     /**
-     * Many PaperAbstracts one paper
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="abstracts")
+     * Many CameraReadyPapers one paper
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="cameraReadyPapers")
      * @ORM\JoinColumn(name="paper", referencedColumnName="id")
      */
     protected $paper;
-
-    /**
-     * One PaperAbstract many AbstractReviews
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FullPaperReview", mappedBy="abstract", cascade={"persist"})
-     */
-    protected $fullPaperReviews;
 
     /**
      * @ORM\Column(type="integer")
@@ -65,7 +59,7 @@ class FullPaper {
      */
     public function __construct()
     {
-        $this->fullPaperReviews = new ArrayCollection();
+
     }
 
     /**
@@ -107,23 +101,6 @@ class FullPaper {
     {
         $this->paper = $paper;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getFullPaperReviews()
-    {
-        return $this->fullPaperReviews;
-    }
-
-    /**
-     * @param mixed $fullPaperReviews
-     */
-    public function setFullPaperReviews($fullPaperReviews)
-    {
-        $this->fullPaperReviews = $fullPaperReviews;
-    }
-
 
 
     /**
@@ -190,35 +167,6 @@ class FullPaper {
         $this->deleted = $deleted;
     }
 
-    /**
-     * Add FullPaperReviews
-     *
-     * @param FullPaperReview $fullPaperReviews
-     *
-     * @return PaperAbstract
-     */
-    public function addFullPaperReview(FullPaperReview $fullPaperReviews)
-    {
-
-        $fullPaperReviews->setFullPaper($this);
-
-        if (!$this->getFullPaperReviews()->contains($fullPaperReviews)) {
-            $this->fullPaperReviews->add($fullPaperReviews);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * Remove FullPaperReview
-     *
-     * @param FullPaperReview $fullPaperReviews
-     */
-    public function removeFullPaperReview(FullPaperReview $fullPaperReviews)
-    {
-        $this->fullPaperReviews->removeElement($fullPaperReviews);
-    }
 
     /**
      * @return string
