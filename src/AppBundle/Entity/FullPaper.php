@@ -191,13 +191,13 @@ class FullPaper {
     }
 
     /**
-     * Add AbstractReviews
+     * Add FullPaperReviews
      *
-     * @param AbstractReview $abstractReviews
+     * @param FullPaperReview $fullPaperReviews
      *
      * @return PaperAbstract
      */
-    public function addAbstractReview(FullPaperReview $fullPaperReviews)
+    public function addFullPaperReview(FullPaperReview $fullPaperReviews)
     {
 
         $fullPaperReviews->setFullPaper($this);
@@ -211,9 +211,9 @@ class FullPaper {
 
 
     /**
-     * Remove AbstractReview
+     * Remove FullPaperReview
      *
-     * @param AbstractReview $abstractReviews
+     * @param FullPaperReview $fullPaperReviews
      */
     public function removeFullPaperReview(FullPaperReview $fullPaperReviews)
     {
