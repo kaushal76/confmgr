@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class FullPaper
  * @package AppBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="full_paper")
+ * @ORM\Table(name="full_papers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\FullPaperRepository")
  */
 class FullPaper {
@@ -27,15 +27,15 @@ class FullPaper {
     protected $code;
 
     /**
-     * Many PaperAbstracts one paper
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="abstracts")
-     * @ORM\JoinColumn(name="paper", referencedColumnName="id")
+     * Many FullPapers have One Paper
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="fullPapers")
+     * @ORM\JoinColumn(name="paper_id", referencedColumnName="id")
      */
     protected $paper;
 
     /**
-     * One PaperAbstract many AbstractReviews
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FullPaperReview", mappedBy="abstract", cascade={"persist"})
+     * One FullPaper have Many FullPaperReviews
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\FullPaperReview", mappedBy="fullPaper", cascade={"persist"})
      */
     protected $fullPaperReviews;
 
@@ -192,10 +192,8 @@ class FullPaper {
 
     /**
      * Add FullPaperReviews
-     *
      * @param FullPaperReview $fullPaperReviews
-     *
-     * @return PaperAbstract
+     * @return FullPaper
      */
     public function addFullPaperReview(FullPaperReview $fullPaperReviews)
     {
@@ -212,19 +210,11 @@ class FullPaper {
 
     /**
      * Remove FullPaperReview
-     *
      * @param FullPaperReview $fullPaperReviews
      */
     public function removeFullPaperReview(FullPaperReview $fullPaperReviews)
     {
         $this->fullPaperReviews->removeElement($fullPaperReviews);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString() {
-        return $this->code;
     }
 
 }

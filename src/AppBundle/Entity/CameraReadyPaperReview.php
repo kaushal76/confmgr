@@ -21,7 +21,7 @@ class CameraReadyPaperReview {
     protected $id;
 
     /**
-     * Many CamerareadyPaperReviews have one CameraReadyPaper
+     * Many CameraReadyPaperReviews have one CameraReadyPaper
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\CameraReadyPaper", inversedBy="cameraReadyPaperReviews")
      * @ORM\JoinColumn(name="camera_ready_paper_id", referencedColumnName="id")
      */
@@ -38,7 +38,6 @@ class CameraReadyPaperReview {
      */
     protected $reviewComment;
 
-
     /**
      * @return mixed
      */
@@ -50,17 +49,17 @@ class CameraReadyPaperReview {
     /**
      * @return mixed
      */
-    public function getFullPaper()
+    public function getCameraReadyPaper()
     {
-        return $this->fullPaper;
+        return $this->cameraReadyPaper;
     }
 
     /**
-     * @param mixed $fullPaper
+     * @param mixed $cameraReadyPaper
      */
-    public function setFullPaper($fullPaper)
+    public function setCameraReadyPaper($cameraReadyPaper)
     {
-        $this->fullPaper = $fullPaper;
+        $this->cameraReadyPaper = $cameraReadyPaper;
     }
 
     /**

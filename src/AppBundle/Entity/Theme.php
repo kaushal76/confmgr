@@ -41,16 +41,12 @@ class Theme {
     protected $leaderAllocations;
 
     /**
-     * @ORM\Column(type="string")
-     *
+     * constructor
      */
-    protected $email;
-
-    /**
-     * @ORM\Column(type="string")
-     *
-     */
-    protected $affiliation;
+    public function __construct()
+    {
+        $this->leaderAllocations = new ArrayCollection();
+    }
 
     /**
      * @return mixed
@@ -58,38 +54,6 @@ class Theme {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEmail()
-    {
-        return $this->email;
-    }
-
-    /**
-     * @param mixed $email
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAffiliation()
-    {
-        return $this->affiliation;
-    }
-
-    /**
-     * @param mixed $affiliation
-     */
-    public function setAffiliation($affiliation)
-    {
-        $this->affiliation = $affiliation;
     }
 
     /**
@@ -111,37 +75,59 @@ class Theme {
     /**
      * @return mixed
      */
-    public function getFirstname()
+    public function getDescription()
     {
-        return $this->firstname;
+        return $this->description;
     }
 
     /**
-     * @param mixed $firstname
+     * @param mixed $description
      */
-    public function setFirstname($firstname)
+    public function setDescription($description)
     {
-        $this->firstname = $firstname;
+        $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getSurname()
+    public function getLeaderAllocations()
     {
-        return $this->surname;
+        return $this->leaderAllocations;
     }
 
     /**
-     * @param mixed $surname
+     * @param mixed $leaderAllocations
      */
-    public function setSurname($surname)
+    public function setLeaderAllocations($leaderAllocations)
     {
-        $this->surname = $surname;
+        $this->leaderAllocations = $leaderAllocations;
+    }
+
+    /**
+     * Add LeaderAllocation
+     * @param LeaderAllocation $leaderAllocations
+     * @return Theme
+     */
+    public function addLeaderAllocation(LeaderAllocation $leaderAllocations)
+    {
+
+        $leaderAllocations->setTheme($this);
+
+        if (!$this->getLeaderAllocations()->contains($leaderAllocations)) {
+            $this->leaderAllocations->add($leaderAllocations);
+        }
+        return $this;
     }
 
 
-
-
+    /**
+     * Remove LeaderAllocation
+     * @param LeaderAllocation $leaderAllocations
+     */
+    public function removeLeaderAllocation(LeaderAllocation $leaderAllocations)
+    {
+        $this->leaderAllocations->removeElement($leaderAllocations);
+    }
 
 }

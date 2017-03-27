@@ -18,7 +18,7 @@ class KeywordAllocation {
      * @var
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="keywordAllocations")
-     * @ORM\JoinColumn(name="paper", referencedColumnName="id")
+     * @ORM\JoinColumn(name="paper_id", referencedColumnName="id")
      *
      */
     protected $paper;
@@ -27,8 +27,8 @@ class KeywordAllocation {
      *
      * @var
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Keyword", inversedBy="paperAllocations")
-     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Keyword", inversedBy="keywordAllocations")
+     * @ORM\JoinColumn(name="keyword_id", referencedColumnName="id")
      */
     protected $keyword;
 

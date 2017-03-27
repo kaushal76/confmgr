@@ -24,9 +24,9 @@ class Reviewer {
 
     /**
      * One Reviewer has many paperAllocations
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ReviewerAllocation", mappedBy="paper", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ReviewerAllocation", mappedBy="reviewer", cascade={"persist"})
      */
-    protected $paperAllocations;
+    protected $reviewerAllocations;
 
     /**
      * One Reviewer has one User
@@ -40,7 +40,7 @@ class Reviewer {
      */
     public function __construct()
     {
-        $this->paperAllocations = new ArrayCollection();
+        $this->reviewerAllocations = new ArrayCollection();
     }
 
     /**
@@ -54,17 +54,17 @@ class Reviewer {
     /**
      * @return mixed
      */
-    public function getPaperAllocations()
+    public function getReviewerAllocations()
     {
-        return $this->paperAllocations;
+        return $this->reviewerAllocations;
     }
 
     /**
-     * @param mixed $paperAllocations
+     * @param mixed $reviewerAllocations
      */
-    public function setPaperAllocations($paperAllocations)
+    public function setReviewerAllocations($reviewerAllocations)
     {
-        $this->paperAllocations = $paperAllocations;
+        $this->reviewerAllocations = $reviewerAllocations;
     }
 
     /**
@@ -81,6 +81,32 @@ class Reviewer {
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * Add ReviewerAllocation
+     * @param ReviewerAllocation $reviewerAllocations
+     * @return Reviewer
+     */
+    public function addReviewerAllocation(ReviewerAllocation $reviewerAllocations)
+    {
+
+        $reviewerAllocations->setReviewer($this);
+
+        if (!$this->getReviewerAllocations()->contains($reviewerAllocations)) {
+            $this->reviewerAllocations->add($reviewerAllocations);
+        }
+        return $this;
+    }
+
+
+    /**
+     * Remove ReviewerAllocation
+     * @param ReviewerAllocation $reviewerAllocations
+     */
+    public function removeReviewerAllocation(ReviewerAllocation $reviewerAllocations)
+    {
+        $this->reviewerAllocations->removeElement($reviewerAllocations);
     }
 
 }

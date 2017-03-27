@@ -27,15 +27,15 @@ class PaperAbstract {
     protected $code;
 
     /**
-     * Many PaperAbstracts one paper
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="abstracts")
-     * @ORM\JoinColumn(name="paper", referencedColumnName="id")
+     * Many PaperAbstracts one Paper
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="paperAbstracts")
+     * @ORM\JoinColumn(name="paper_id", referencedColumnName="id")
      */
     protected $paper;
 
     /**
      * One PaperAbstract many AbstractReviews
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AbstractReview", mappedBy="abstract", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AbstractReview", mappedBy="paperAbstract", cascade={"persist"})
      */
     protected $abstractReviews;
 
@@ -190,9 +190,7 @@ class PaperAbstract {
 
     /**
      * Add AbstractReviews
-     *
      * @param AbstractReview $abstractReviews
-     *
      * @return PaperAbstract
      */
     public function addAbstractReview(AbstractReview $abstractReviews)
@@ -210,7 +208,6 @@ class PaperAbstract {
 
     /**
      * Remove AbstractReview
-     *
      * @param AbstractReview $abstractReviews
      */
     public function removeAbstractReview(AbstractReview $abstractReviews)

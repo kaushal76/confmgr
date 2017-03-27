@@ -23,10 +23,10 @@ class Author {
 
 
     /**
-     * One Author has many paperAllocations
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AuthorAllocation", mappedBy="paper", cascade={"persist"})
+     * One Author has Many authorAllocations
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\AuthorAllocation", mappedBy="author", cascade={"persist"})
      */
-    protected $paperAllocations;
+    protected $authorAllocations;
 
     /**
      * One Author has one User
@@ -40,7 +40,7 @@ class Author {
      */
     public function __construct()
     {
-        $this->paperAllocations = new ArrayCollection();
+        $this->authorAllocations = new ArrayCollection();
     }
 
     /**
@@ -54,17 +54,17 @@ class Author {
     /**
      * @return mixed
      */
-    public function getPaperAllocations()
+    public function getAuthorAllocations()
     {
-        return $this->paperAllocations;
+        return $this->authorAllocations;
     }
 
     /**
      * @param mixed $paperAllocations
      */
-    public function setPaperAllocations($paperAllocations)
+    public function setAuthorAllocations($authorAllocations)
     {
-        $this->paperAllocations = $paperAllocations;
+        $this->authorAllocations = $authorAllocations;
     }
 
     /**
@@ -81,6 +81,34 @@ class Author {
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * Add AuthorAllocations
+     *
+     * @param AuthorAllocation $authorAllocations
+     *
+     * @return Author
+     */
+    public function addAuthorAllocation(AuthorAllocation $authorAllocation)
+    {
+        $authorAllocation->setAuthor($this);
+
+        if (!$this->getAuthorAllocations()->contains($authorAllocation)) {
+            $this->authorAllocations->add($authorAllocation);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove AuthorAllocations
+     *
+     * @param AuthorAllocation $authorAllocations
+     */
+    public function removeAuthorAllocation(AuthorAllocation $authorAllocation)
+    {
+        $this->authorAllocations->removeElement($authorAllocation);
     }
 
 }

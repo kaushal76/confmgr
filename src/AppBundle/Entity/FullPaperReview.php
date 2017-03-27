@@ -27,6 +27,12 @@ class FullPaperReview {
      */
     protected $fullPaper;
 
+    /**
+     * One FullPaperReview has one Reviewer
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reviewer")
+     * @ORM\JoinColumn(name="reviewer_id", referencedColumnName="id")
+     */
+    protected $reviewer;
 
     /**
      * @ORM\Column(type="integer")
@@ -45,6 +51,22 @@ class FullPaperReview {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getReviewer()
+    {
+        return $this->reviewer;
+    }
+
+    /**
+     * @param mixed $reviewer
+     */
+    public function setReviewer($reviewer)
+    {
+        $this->reviewer = $reviewer;
     }
 
     /**

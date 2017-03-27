@@ -60,4 +60,32 @@ class Keyword {
     {
         $this->keywordAllocations = $keywordAllocations;
     }
+
+
+    /**
+     * Add KeywordAllocation
+     * @param KeywordAllocation $keywordAllocation
+     * @return Keyword
+     */
+    public function addKeywordAllocation(KeywordAllocation $keywordAllocation)
+    {
+
+        $keywordAllocation->setKeyword($this);
+
+        if (!$this->getKeywordAllocations()->contains($keywordAllocation)) {
+            $this->keywordAllocations->add($keywordAllocation);
+        }
+        return $this;
+    }
+
+
+    /**
+     * Remove KeywordAllocation
+     * @param KeywordAllocation $keywordAllocation
+     */
+    public function removeKeywordAllocation(KeywordAllocation $keywordAllocation)
+    {
+        $this->keywordAllocations->removeElement($keywordAllocation);
+    }
+
 }

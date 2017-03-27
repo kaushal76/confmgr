@@ -25,8 +25,14 @@ class AbstractReview {
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PaperAbstract", inversedBy="abstractReviews")
      * @ORM\JoinColumn(name="abstract_id", referencedColumnName="id")
      */
-    protected $abstract;
+    protected $paperAbstract;
 
+    /**
+     * One AbstractReview has one Reviewer
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Reviewer")
+     * @ORM\JoinColumn(name="reviewer_id", referencedColumnName="id")
+     */
+    protected $reviewer;
 
     /**
      * @ORM\Column(type="integer")
@@ -46,6 +52,21 @@ class AbstractReview {
         return $this->id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getReviewer()
+    {
+        return $this->reviewer;
+    }
+
+    /**
+     * @param mixed $reviewer
+     */
+    public function setReviewer($reviewer)
+    {
+        $this->reviewer = $reviewer;
+    }
 
     /**
      * @return mixed

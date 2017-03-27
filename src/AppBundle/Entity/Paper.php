@@ -39,7 +39,7 @@ class Paper {
     protected $keywordAllocations;
 
     /**
-     * One paper has many Abstracts
+     * One Paper has many PaperAbstracts
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\PaperAbstract", mappedBy="paper", cascade={"persist"})
      */
     protected $paperAbstracts;
@@ -57,7 +57,7 @@ class Paper {
     protected $cameraReadyPapers;
 
     /**
-     * One paper has many AuthorAllocations
+     * One paper has Many AuthorAllocations
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\AuthorAllocation", mappedBy="paper", cascade={"persist"})
      */
     protected $authorAllocations;
@@ -80,7 +80,6 @@ class Paper {
      */
     public function __construct()
     {
-        $this->keywords = new ArrayCollection();
         $this->paperAbstracts = new ArrayCollection();
         $this->fullPapers = new ArrayCollection();
         $this->cameraReadyPapers = new ArrayCollection();
@@ -95,22 +94,6 @@ class Paper {
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTheme()
-    {
-        return $this->theme;
-    }
-
-    /**
-     * @param mixed $theme
-     */
-    public function setTheme($theme)
-    {
-        $this->theme = $theme;
     }
 
     /**
@@ -148,17 +131,17 @@ class Paper {
     /**
      * @return mixed
      */
-    public function getKeywords()
+    public function getKeywordAllocations()
     {
-        return $this->keywords;
+        return $this->keywordAllocations;
     }
 
     /**
-     * @param mixed $keywords
+     * @param mixed $keywordAllocations
      */
-    public function setKeywords($keywords)
+    public function setKeywordAllocations($keywordAllocations)
     {
-        $this->keywords = $keywords;
+        $this->keywordAllocations = $keywordAllocations;
     }
 
     /**
@@ -241,72 +224,75 @@ class Paper {
         $this->reviewerAllocations = $reviewerAllocations;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
 
     /**
-     * Add ReviewerAllocations
-     *
-     * @param ReviewerAllocation $reviewerAllocations
-     *
+     * @param mixed $theme
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
+    }
+
+    /**
+     * Add KeywordAllocations
+     * @param KeywordAllocation $keywordAllocation
      * @return Paper
      */
-    public function addReviewerAllocation(ReviewerAllocation $reviewerAllocations)
+    public function addKeywordAllocation(KeywordAllocation $keywordAllocation)
     {
 
-        $reviewerAllocations->setPaper($this);
+        $keywordAllocation->setKeyword($this);
 
-        if (!$this->getReviewerAllocations()->contains($reviewerAllocations)) {
-            $this->reviewerAllocations->add($reviewerAllocations);
+        if (!$this->getKeywordAllocations()->contains($keywordAllocation)) {
+            $this->keywordAllocations->add($keywordAllocation);
         }
-
         return $this;
     }
 
-
     /**
-     * Remove ReviewerAllocations
-     *
-     * @param ReviewerAllocation $reviewerAllocations
+     * Remove KeywordAllocations
+     * @param KeywordAllocation $keywordAllocation
      */
-    public function removeAllocation(ReviewerAllocation $reviewerAllocations)
+    public function removeKeywordAllocation(KeywordAllocation $keywordAllocation)
     {
-        $this->reviewerAllocations->removeElement($reviewerAllocations);
+        $this->keywordAllocations->removeElement($keywordAllocation);
     }
 
     /**
      * Add PaperAbstracts
-     *
-     * @param PaperAbstract $paperAbstracts
-     *
+     * @param PaperAbstract $paperAbstract
      * @return Paper
      */
-    public function addPaperAbstract(PaperAbstract $paperAbstracts)
+    public function addPaperAbstract(PaperAbstract $paperAbstract)
     {
 
-        $paperAbstracts->setPaper($this);
+        $paperAbstract->setPaper($this);
 
-        if (!$this->getPaperAbstracts()->contains($paperAbstracts)) {
-            $this->paperAbstracts->add($paperAbstracts);
+        if (!$this->getPaperAbstracts()->contains($paperAbstract)){
+            $this->paperAbstracts->add($paperAbstract);
         }
-
         return $this;
     }
 
-
     /**
-     * Remove PaperAbstracts
-     *
-     * @param PaperAbstract $paperAbstracts
+     * Remove PaperAbstract
+     * @param PaperAbstract $paperAbstract
      */
-    public function removePaperAllocation(PaperAbstract $paperAbstracts)
+    public function removePaperAbstract(PaperAbstract $paperAbstract)
     {
-        $this->paperAbstracts->removeElement($paperAbstracts);
+        $this->paperAbstracts->removeElement($paperAbstract);
     }
 
     /**
      * Add FullPapers
-     *
      * @param FullPaper $fullPaper
-     *
      * @return Paper
      */
     public function addFullPaper(FullPaper $fullPaper)
@@ -314,17 +300,14 @@ class Paper {
 
         $fullPaper->setPaper($this);
 
-        if (!$this->getFullPapers()->contains($fullPaper)) {
+        if (!$this->getFullPapers()->contains($fullPaper)){
             $this->fullPapers->add($fullPaper);
         }
-
         return $this;
     }
 
-
     /**
-     * Remove FullPapers
-     *
+     * Remove FullPaper
      * @param FullPaper $fullPaper
      */
     public function removeFullPaper(FullPaper $fullPaper)
@@ -334,9 +317,7 @@ class Paper {
 
     /**
      * Add CameraReadyPapers
-     *
      * @param CameraReadyPaper $cameraReadyPaper
-     *
      * @return Paper
      */
     public function addCameraReadyPaper(CameraReadyPaper $cameraReadyPaper)
@@ -344,16 +325,14 @@ class Paper {
 
         $cameraReadyPaper->setPaper($this);
 
-        if (!$this->getCameraReadyPapers()->contains($cameraReadyPaper)) {
+        if (!$this->getCameraReadyPapers()->contains($cameraReadyPaper)){
             $this->cameraReadyPapers->add($cameraReadyPaper);
         }
         return $this;
     }
 
-
     /**
-     * Remove CameraReadyPapers
-     *
+     * Remove CameraReadyPaper
      * @param CameraReadyPaper $cameraReadyPaper
      */
     public function removeCameraReadyPaper(CameraReadyPaper $cameraReadyPaper)
@@ -363,62 +342,52 @@ class Paper {
 
     /**
      * Add AuthorAllocations
-     *
-     * @param AuthorAllocation $authorAllocations
-     *
+     * @param AuthorAllocation $authorAllocation
      * @return Paper
      */
-    public function addAuthorAllocation(AuthorAllocation $authorAllocations)
+    public function addAuthorAllocation(AuthorAllocation $authorAllocation)
     {
 
-        $authorAllocations->setPaper($this);
+        $authorAllocation->setPaper($this);
 
-        if (!$this->getAuthorAllocations()->contains($authorAllocations)) {
-            $this->authorAllocations->add($authorAllocations);
+        if (!$this->getAuthorAllocations()->contains($authorAllocation)){
+            $this->authorAllocations->add($authorAllocation);
         }
-
         return $this;
     }
-
 
     /**
      * Remove AuthorAllocations
-     *
-     * @param AuthorAllocation $authorAllocations
+     * @param AuthorAllocation $authorAllocation
      */
-    public function removeAuthorAllocation(AuthorAllocation $authorAllocations)
+    public function removeAuthorAllocation(AuthorAllocation $authorAllocation)
     {
-        $this->authorAllocations->removeElement($authorAllocations);
+        $this->authorAllocations->removeElement($authorAllocation);
     }
 
-
     /**
-     * Add Keywords
-     *
-     * @param Keyword $keywords
-     *
+     * Add ReviewerAllocations
+     * @param ReviewerAllocation $reviewerAllocation
      * @return Paper
      */
-    public function addKeywordn(Keyword $keywords)
+    public function addReviewerAllocation(ReviewerAllocation $reviewerAllocation)
     {
 
-        $keywords->setPaper($this);
+        $reviewerAllocation->setPaper($this);
 
-        if (!$this->getKeywords()->contains($keywords)) {
-            $this->keywords->add($keywords);
+        if (!$this->getReviewerAllocations()->contains($reviewerAllocation)){
+            $this->reviewerAllocations->add($reviewerAllocation);
         }
-
         return $this;
     }
 
     /**
-     * Remove Keywords
-     *
-     * @param Keyword $keywords
+     * Remove ReviewerAllocation
+     * @param ReviewerAllocation $reviewerAllocation
      */
-    public function removeKeyword(Keyword $keywords)
+    public function removeReviewerAllocation(ReviewerAllocation $reviewerAllocation)
     {
-        $this->keywords->removeElement($keywords);
+        $this->reviewerAllocations->removeElement($reviewerAllocation);
     }
 
     /**

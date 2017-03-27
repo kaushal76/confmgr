@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class CameraReadyPaper
  * @package AppBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="camera_ready_paper")
+ * @ORM\Table(name="camera_ready_papers")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CameraReadyPaperRepository")
  */
 class CameraReadyPaper {
@@ -23,7 +23,7 @@ class CameraReadyPaper {
 
 
     /**
-     * Many CameraReadyPapers one Paper
+     * Many CameraReadyPapers have One Paper
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="cameraReadyPapers")
      * @ORM\JoinColumn(name="paper", referencedColumnName="id")
      */

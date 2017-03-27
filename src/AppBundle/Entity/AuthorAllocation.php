@@ -19,7 +19,7 @@ class AuthorAllocation {
      * @var
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Paper", inversedBy="authorAllocations")
-     * @ORM\JoinColumn(name="paper", referencedColumnName="id")
+     * @ORM\JoinColumn(name="paper_id", referencedColumnName="id")
      *
      */
     protected $paper;
@@ -28,8 +28,8 @@ class AuthorAllocation {
      *
      * @var
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="paperAllocations")
-     * @ORM\JoinColumn(name="author", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Author", inversedBy="authorAllocations")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id")
      */
     protected $author;
 

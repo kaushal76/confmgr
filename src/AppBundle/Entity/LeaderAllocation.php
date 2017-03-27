@@ -18,7 +18,7 @@ class LeaderAllocation {
      * @var
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Theme", inversedBy="leaderAllocations")
-     * @ORM\JoinColumn(name="theme", referencedColumnName="id")
+     * @ORM\JoinColumn(name="theme_id", referencedColumnName="id")
      *
      */
     protected $theme;
@@ -28,7 +28,7 @@ class LeaderAllocation {
      * @var
      * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
-     * @ORM\JoinColumn(name="leader", referencedColumnName="id")
+     * @ORM\JoinColumn(name="leader_id", referencedColumnName="id")
      */
     protected $leader;
 
