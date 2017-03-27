@@ -5,13 +5,13 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class AbstractReview
+ * Class FullPaperReview
  * @package AppBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="abstract_reviews")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AbstractReviewRepository")
+ * @ORM\Table(name="full_paper_reviews")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FullPaperReviewRepository")
  */
-class AbstractReview {
+class FullPaperReview {
 
     /**
      * @ORM\Column(type="integer")
@@ -21,11 +21,11 @@ class AbstractReview {
     protected $id;
 
     /**
-     * Many AbstractReviews have one PaperAbstract
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PaperAbstract", inversedBy="abstractReviews")
-     * @ORM\JoinColumn(name="abstract_id", referencedColumnName="id")
+     * Many FullPaperReviews have one FullPaper
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\FullPaper", inversedBy="fullPaperReviews")
+     * @ORM\JoinColumn(name="full_paper_id", referencedColumnName="id")
      */
-    protected $abstract;
+    protected $fullPaper;
 
 
     /**
@@ -38,6 +38,7 @@ class AbstractReview {
      */
     protected $reviewComment;
 
+
     /**
      * @return mixed
      */
@@ -46,21 +47,20 @@ class AbstractReview {
         return $this->id;
     }
 
-
     /**
      * @return mixed
      */
-    public function getAbstract()
+    public function getFullPaper()
     {
-        return $this->abstract;
+        return $this->fullPaper;
     }
 
     /**
-     * @param mixed $abstract
+     * @param mixed $fullPaper
      */
-    public function setAbstract($abstract)
+    public function setFullPaper($fullPaper)
     {
-        $this->abstract = $abstract;
+        $this->fullPaper = $fullPaper;
     }
 
     /**

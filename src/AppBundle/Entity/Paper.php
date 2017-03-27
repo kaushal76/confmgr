@@ -32,11 +32,11 @@ class Paper {
 
     /**
      *
-     * Many keywords have many papers
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Keyword", inversedBy="papers", cascade={"persist"})
-     * @ORM\JoinTable(name="papers_keywords")
+     * One Paper has many KeywordAllocations
+     * @ORM\OnetoMany(targetEntity="AppBundle\Entity\KeywordAllocation", mappedBy="paper", cascade={"persist"})
+     * @ORM\JoinTable(name="papers_keywords_allocations")
      */
-    protected $keywords;
+    protected $keywordAllocations;
 
     /**
      * One paper has many Abstracts
@@ -45,19 +45,19 @@ class Paper {
     protected $paperAbstracts;
 
     /**
-     * One paper many Full Papers
+     * One paper many FullPapers
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\FullPaper", mappedBy="paper", cascade={"persist"})
      */
     protected $fullPapers;
 
     /**
-     * One paper has many Camera Ready Papers
+     * One paper has many CameraReadyPapers
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\CameraReadyPaper", mappedBy="paper", cascade={"persist"})
      */
     protected $cameraReadyPapers;
 
     /**
-     * One paper has many Author Allocations
+     * One paper has many AuthorAllocations
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\AuthorAllocation", mappedBy="paper", cascade={"persist"})
      */
     protected $authorAllocations;
@@ -67,6 +67,13 @@ class Paper {
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\ReviewerAllocation", mappedBy="paper", cascade={"persist"})
      */
     protected $reviewerAllocations;
+
+    /**
+     * One Paper has one Theme
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Theme")
+     * @ORM\JoinColumn(name="theme_id", referencedColumnName="id")
+     */
+    protected $theme;
 
     /**
      * constructor
@@ -79,6 +86,7 @@ class Paper {
         $this->cameraReadyPapers = new ArrayCollection();
         $this->authorAllocations = new ArrayCollection();
         $this->reviewerAllocations = new ArrayCollection();
+        $this->keywordAllocations = new ArrayCollection();
     }
 
     /**
@@ -87,6 +95,22 @@ class Paper {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * @param mixed $theme
+     */
+    public function setTheme($theme)
+    {
+        $this->theme = $theme;
     }
 
     /**
