@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="author_paper_allocations")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorAllocationRepository")
+ *
  */
 class AuthorAllocation {
 

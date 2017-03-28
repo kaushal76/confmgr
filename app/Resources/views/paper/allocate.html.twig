@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% if app.session.flashBag.has('error') %}
+        <div class="alert alert-danger">
+            {% for msg in app.session.flashBag.get('error') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3>Paper Details</h3>
+                </div>
+                <div class="panel-body tablepanel">
+                    {% if paper.authorAllocations %}
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {{ form_start(form) }}
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h2>Allocations</h2></div>
+                <div class="panel-body tablepanel">
+                    <table class="table table-responsive allocations"
+                           data-prototype="
+                                {% filter escape %}
+                                    {{ include(':authorallocation:prototype.item.html.twig', { 'form': form.authorAllocations.vars.prototype }) }}
+                                {% endfilter %}
+                    ">
+                        <thead>
+                        <tr>
+                            <th>
+                                Author
+                            </th>
+                            <th>
+                                Actions
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        {% for authorAllocation in form.authorAllocations %}
+                            <tr class="rowbody">
+                                <td >
+                                    {{ form_widget(authorAllocation.author) }}
+                                </td >
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                        {{ form_widget(form._token) }}
+                        <div class="hidden">
+                            {{ form_widget(form.code) }}
+                            {{ form_widget(form.title) }}
+                            {{ form_widget(form.theme) }}
+                        </div>
+                </div>
+            </div>
+            <div class="btngroup">
+                <button class="btn btn-primary" name="submit" type="submit">
+                    <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span>
+                    Save
+                </button>
+            </div>
+        </div>
+        {{ form_end(form, {'render_rest': false}) }}
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('javascript/allocations.js') }}"></script>
+{% endblock %}

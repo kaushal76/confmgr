@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="users")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
+ *
  */
 class User {
 
@@ -139,6 +139,13 @@ class User {
     {
         $this->surname = $surname;
     }
+
+    public function __toString()
+    {
+        $name = $this->getTitle().' '.$this->getFirstname().' '.$this->getSurname();
+        return $name;
+    }
+
 
 
 

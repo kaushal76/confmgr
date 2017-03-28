@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="keyword_paper_allocations")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\KeywordAllocationRepository")
+ *
  */
 class KeywordAllocation {
 

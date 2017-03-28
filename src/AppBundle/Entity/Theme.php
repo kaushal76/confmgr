@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="themes")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ThemeRepository")
+ *
  */
 class Theme {
 
@@ -128,6 +128,11 @@ class Theme {
     public function removeLeaderAllocation(LeaderAllocation $leaderAllocations)
     {
         $this->leaderAllocations->removeElement($leaderAllocations);
+    }
+
+    public function __toString()
+    {
+        return $this->getTitle();
     }
 
 }

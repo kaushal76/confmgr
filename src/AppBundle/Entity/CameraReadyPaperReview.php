@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="camera_ready_paper_reviews")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CamerareadyPaperReviewRepository")
+ *
  */
 class CameraReadyPaperReview {
 

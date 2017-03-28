@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="authors")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AuthorRepository")
+ *
  */
 class Author {
 
@@ -110,5 +110,12 @@ class Author {
     {
         $this->authorAllocations->removeElement($authorAllocation);
     }
+
+    public function __toString()
+    {
+        $name = $this->getUser();
+        return $name->getTitle().' '.$name->getFirstname().' '.$name->getSurname();;
+    }
+
 
 }

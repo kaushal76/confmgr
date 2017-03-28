@@ -9,8 +9,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Class AuthorAllocation
  * @package AppBundle\Entity
  * @ORM\Entity
- * @ORM\Table(name="author_paper_allocations")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ReviewerAllocationRepository")
+ * @ORM\Table(name="reviewer_paper_allocations")
+ *
  */
 class ReviewerAllocation {
 

@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="paper_abstracts")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PaperAbstractRepository")
+ *
  */
 class PaperAbstract {
 
@@ -59,6 +59,11 @@ class PaperAbstract {
      */
     protected $deleted;
 
+    /**
+     * @ORM\Column(type="text")
+     */
+    protected $abstractText;
+
 
     /**
      * constructor
@@ -74,6 +79,22 @@ class PaperAbstract {
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAbstractText()
+    {
+        return $this->abstractText;
+    }
+
+    /**
+     * @param mixed $abstractText
+     */
+    public function setAbstractText($abstractText)
+    {
+        $this->abstractText = $abstractText;
     }
 
     /**

@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="leader_theme_allocations")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\LeaderAllocationRepository")
+ *
  */
 class LeaderAllocation {
 

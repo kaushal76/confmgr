@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="abstract_reviews")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\AbstractReviewRepository")
+ *
  */
 class AbstractReview {
 

@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @package AppBundle\Entity
  * @ORM\Entity
  * @ORM\Table(name="keywords")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\KeywordRepository")
+ *
  */
 class Keyword {
 
